@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/pay_photo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@android:color/darker_gray"
+                android:cropToPadding="true"
+                android:scaleType="centerInside" />
+
+            <ImageButton
+                android:id="@+id/pay_camera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_camera" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/pay_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pay_title_label"
+        android:padding="10dp"/>
+
+    <EditText
+        android:id="@+id/pay_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/pay_title_hint"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:src="@drawable/ic_done_24dp"/>
+    <!--        android:layout_marginTop="@dimen/fab_margin_top"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:src="@drawable/ic_done_24dp"/>-->
+    </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pay_descr_label"/>
+
+    <EditText
+        android:id="@+id/pay_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pay_bank_name_label"/>
+    <EditText
+        android:id="@+id/pay_bank_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pay_acc_id_label"/>
+
+    <EditText
+        android:id="@+id/pay_account_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pay_total_summ_label"/>
+
+    <EditText
+        android:id="@+id/pay_total_summ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/pay_date_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:text="@string/pay_date_day_label"/>
+        <!--android:padding="10dp"/>-->
+
+    <EditText
+        android:id="@+id/pay_period"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:text="@string/pay_period_label"/>
+        <!--android:padding="10dp"/>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/pay_schedule"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/btn_schedule" />
+
+            <Button
+                android:id="@+id/pay_last_timestamp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/btn_last_timestamp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/pay_set_timestamp"
+                    android:layout_width="334dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/btn_set_date_time" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/pay_executed"
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/pay_executed_label" />
+
+            <Button
+                android:id="@+id/pay_clear_timestamp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/btn_clear_date_time" />
+
+            </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

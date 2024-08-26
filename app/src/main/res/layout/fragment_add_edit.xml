@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/addEditScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="1"
+            android:orientation="vertical"
+            android:useDefaultMargins="true"
+            android:id="@+id/gridLayout">
+
+            <EditText
+                android:id="@+id/titleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Наименование платежа"
+                android:imeOptions="actionNext"
+                android:minHeight="48dp">
+                <!--android:inputType="textPersonName|textCapWords" >-->
+            </EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Категория платежа">
+            </TextView>
+
+            <Spinner
+                android:id="@+id/categoryChooser"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                />
+
+            <EditText
+                android:id="@+id/bankEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Банк (компания)"
+                android:imeOptions="actionNext"
+                android:minHeight="48dp">
+                <!-- android:inputType="bank" >-->
+            </EditText>
+
+            <EditText
+                android:id="@+id/descrEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Комментарий"
+                android:imeOptions="actionNext"
+                android:minHeight="48dp">
+                <!--android:inputType="comment" >-->
+            </EditText>
+
+            <EditText
+                android:id="@+id/accountEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Платежный номер"
+                android:imeOptions="actionNext"
+                android:minHeight="48dp">
+                <!--android:inputType="textPostalAddress|textCapWords" >-->
+            </EditText>
+
+            <EditText
+                android:id="@+id/dayEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="День месяца"
+                android:imeOptions="actionNext"
+                android:minHeight="48dp">
+                <!--android:inputType="textPostalAddress|textCapWords" >-->
+            </EditText>
+
+            <EditText
+                android:id="@+id/periodEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Периодичность (месяцев)"
+                android:imeOptions="actionNext"
+                android:minHeight="48dp">
+                <!--android:inputType="textPostalAddress|textCapCharacters" >-->
+            </EditText>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/totalEditText"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Общая сумма"
+                    android:imeOptions="actionDone"
+                    android:minHeight="48dp">
+                <!--android:inputType="number" >-->
+                </EditText>
+                <CheckBox
+                    android:id="@+id/checkBoxUSD"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/currency_usd">
+                </CheckBox>
+            </LinearLayout>
+            <Button
+                android:id="@+id/savePaymentButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="сохранить" >
+            </Button>
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

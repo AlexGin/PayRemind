@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/new_pay"
+        android:title="@string/new_pay"
+        android:showAsAction="ifRoom|withText"/>
+
+    <item
+        android:id="@+id/total_per_month"
+        android:title="@string/total_summ_per_month"
+        android:showAsAction="ifRoom|withText"/>
+
+    <item
+        android:id="@+id/show_subtitle"
+        android:title="@string/show_subtitle"
+        android:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/clear_execute_flags"
+        android:title="@string/show_clear_execute_flags"
+        android:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/clear_last_dates"
+        android:title="@string/show_clear_last_dates"
+        android:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/unexecuted_table"
+        android:title="@string/unexecuted_pay_table"
+        android:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/currency_info"
+        android:title="@string/currency_info_table"
+        android:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/application_tune"
+        android:title="@string/str_app_tune"
+        android:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/show_app_info"
+        android:title="@string/show_app_info"
+        android:showAsAction="ifRoom"/>
+    <!--
+        <item
+            android:id="@+id/menu_show_about"
+            android:title="@string/show_about"
+            android:showAsAction="ifRoom"/> -->
+
+        <item
+            android:id="@+id/menu_exit"
+            android:title="@string/show_exit"
+            android:showAsAction="ifRoom"/>
+
+        <!-- DO NOT USING:
+          app:showAsAction="ifRoom"
+          It's cause of Resource-compilation Error -->
+</menu>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textViewSchedule"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/schedule"
+    />
+
+    <CheckBox
+        android:id="@+id/checkBoxJAN"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/JANUARY"
+         />
+
+    <CheckBox
+        android:id="@+id/checkBoxFEB"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/FEBRUARY"
+         />
+
+    <CheckBox
+        android:id="@+id/checkBoxMAR"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/MARCH"
+         />
+
+    <CheckBox
+        android:id="@+id/checkBoxAPR"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/APRIL"
+         />
+
+    <CheckBox
+        android:id="@+id/checkBoxMAY"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/MAY"
+        />
+
+    <CheckBox
+        android:id="@+id/checkBoxJUN"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/JUNE"
+       />
+
+    <CheckBox
+        android:id="@+id/checkBoxJUL"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/JULY"
+        />
+
+    <CheckBox
+        android:id="@+id/checkBoxAUG"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AUGUST"
+        />
+
+    <CheckBox
+        android:id="@+id/checkBoxSEP"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SEPTEMBER"
+       />
+
+    <CheckBox
+        android:id="@+id/checkBoxOCT"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/OCTOBER"
+       />
+
+    <CheckBox
+        android:id="@+id/checkBoxNOV"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/NOVEMBER"
+       />
+
+    <CheckBox
+        android:id="@+id/checkBoxDEC"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/DECEMBER"
+         />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/schedule_save"
+         />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

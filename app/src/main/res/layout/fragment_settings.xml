@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:padding="10dp"/>
+
+        <CheckBox
+            android:id="@+id/checkBoxNotify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_notifications"
+            android:padding="10dp" />
+
+        <CheckBox
+            android:id="@+id/checkBoxFilterUSD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_filter_usd"
+            android:padding="10dp" />
+
+        <CheckBox
+            android:id="@+id/checkBoxPrenotify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_prenotify"
+            android:padding="10dp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="245dp">
+
+            <RadioButton
+                android:id="@+id/rBtn1day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/strBtn1day" />
+
+            <RadioButton
+                android:id="@+id/rBtn2day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/strBtn2day" />
+
+            <RadioButton
+                android:id="@+id/rBtn3day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/strBtn3day" />
+
+            <RadioButton
+                android:id="@+id/rBtn4day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/strBtn4day" />
+
+            <RadioButton
+                android:id="@+id/rBtn5day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/strBtn5day" />
+        </RadioGroup>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:padding="10dp"/>
+
+        <Button
+            android:id="@+id/buttonSaveSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save_settings"
+            android:padding="10dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

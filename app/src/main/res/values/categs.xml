@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cates_context_names">
+        <item>Неизвестный</item>
+        <item>Банковский (кредит)</item>
+        <item>Авто (страховка, лизинг)</item>
+        <item>Жилищно-Коммунальный</item>
+        <item>Мобильная связь</item>
+        <item>Проводная связь</item>
+        <item>Обучение (тренировка)</item>
+        <item>Рассрочка</item>
+    </string-array>
+</resources>
