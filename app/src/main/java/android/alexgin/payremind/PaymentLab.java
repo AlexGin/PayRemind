@@ -288,7 +288,7 @@ public class PaymentLab {
         int nCategory = p.getCategory().ordinal();
         double dbTotalSumm = p.getTotalSumm();
         int nCurrency = p.getCurrency();
-        int nExecuted = p.isExecuted() ? 1 : 0;
+        int nExecuted = p.getExecuted();
         Instant instantExecDate = p.getExecDate().atZone(zoneId).toInstant();
         long nExecDate = instantExecDate.toEpochMilli();
 

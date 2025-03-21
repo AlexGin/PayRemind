@@ -3,6 +3,7 @@
     <string name="new_pay">New Pay</string>
     <string name="show_subtitle">Show Subtitle</string>
     <string name="hide_subtitle">Hide Subtitle</string>
+    <string name="delete_record">Удалить выбранную Запись?</string>
     <string name="delete_pay">Удалить элемент</string>
     <string name="edit_pay">Редактировать элемент</string>
     <string name="unexecuted_pay_table">Невыполненные платежи</string>
@@ -36,9 +37,10 @@
     <string name="pay_title_hint">Enter a title for the pay.</string>
     <string name="btn_date_text">date</string>
     <string name="btn_time_text">time</string>
+    <string name="btn_set_locked">БЛОКИРОВКА</string>
     <string name="btn_schedule">Расписание</string>
     <string name="btn_last_timestamp">Последний платеж</string>
-    <string name="btn_set_date_time">Установка даты/времени</string>
+    <string name="btn_set_date_time">Уст. дата/время</string>
     <string name="btn_clear_date_time">Очист. даты/вр.</string>
     <string name="pay_executed_label">Оплачено</string>
     <string name="show_clear_execute_flags">Сброс флагов платежей</string>
@@ -55,6 +57,9 @@
     <string name="str_notifications">Извещения (сообщения)</string>
     <string name="str_filter_usd">Отфильтровать Валютные (USD)</string>
     <string name="str_prenotify">Предварительные</string>
+    <string name="delete">Удаление элемента</string>
+    <string name="delete_pay_record">Удаление выбранной записи</string>
+    <string name="cancel_delete">Отмена удаления</string>
     <string name="cancel_erase">Отмена очистки</string>
     <string name="erase">Очистка</string>
     <string name="erase_all">Очистка флагов и дат платежа</string>

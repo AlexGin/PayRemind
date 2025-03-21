@@ -69,6 +69,7 @@ public class PayFragment extends Fragment {
     private Button mPaySetTimestamp;
     private Button mPayClearTimestamp;
     private Button mPayScheduleButton; // Added 23.01.2022
+    private Button mLockedButton; // Added 15.02.2025
     private ImageButton mPhotoButton; // Added 18.08.2021
     private ImageView mPhotoView;     // Added 18.08.2021
     private File mPhotoFile;          // Added 18.08.2021
@@ -86,11 +87,6 @@ public class PayFragment extends Fragment {
         args.putParcelable(MainActivity.ARG_RESULT_CODE, (Parcelable)obj);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public void setPay(Pay pay)
-    {
-        this.mPay = pay;
     }
 
     @Override
@@ -214,18 +210,23 @@ public class PayFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mPay.clearExecDate();
+                if (2 == mPay.getExecuted()) // If was locked - clear it
+                    mPay.setExecuted(0);
                 updatePay();
             }
         });
 
         mExecutedCheckbox = (CheckBox) v.findViewById(R.id.pay_executed);
-        mExecutedCheckbox.setChecked(mPay.isExecuted());
+        mExecutedCheckbox.setChecked(1 == mPay.getExecuted());
         mExecutedCheckbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mPay.setExecuted(isChecked);
-                if (isChecked) {
-                    mPay.setExecDate(LocalDateTime.now());
+                if (2 != mPay.getExecuted()) {
+                    int nChecked = isChecked ? 1 : 0;
+                    mPay.setExecuted(nChecked);
+                    if (isChecked) {
+                        mPay.setExecDate(LocalDateTime.now());
+                    }
                 }
                 updatePay();
             };
@@ -242,8 +243,8 @@ public class PayFragment extends Fragment {
 
         mPhotoButton = (ImageButton) v.findViewById(R.id.pay_camera);
         final Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        boolean canTakePhoto = mPhotoFile != null; // Corrected 07.05.2023
-                // captureImage.resolveActivity(packageManager) != null;
+        boolean canTakePhoto = mPhotoFile != null && // Return to old codes: 15.12.2024
+                 captureImage.resolveActivity(packageManager) != null;
         mPhotoButton.setEnabled(canTakePhoto);
         Log.d(TAG, "onCreateView: canTakePhoto = " + canTakePhoto);
         // see:
@@ -268,6 +269,25 @@ public class PayFragment extends Fragment {
                 startActivityForResult(captureImage, REQUEST_PHOTO);
             }
         });
+
+        mLockedButton = (Button) v.findViewById(R.id.pay_set_locked);
+        mLockedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int nLocked = 2;
+                mPay.setExecuted(nLocked);
+                mPay.setExecDate(LocalDateTime.now());
+                updatePay();
+                mLockedButton.setEnabled(false);
+                mExecutedCheckbox.setChecked(true);
+                mExecutedCheckbox.setEnabled(false);
+            }
+        });
+        if (2 == mPay.getExecuted()) {
+            mLockedButton.setEnabled(false);
+            mExecutedCheckbox.setChecked(true);
+            mExecutedCheckbox.setEnabled(false);
+        }
 
         mPhotoView = (ImageView) v.findViewById(R.id.pay_photo);
         mPhotoView.setOnClickListener(new View.OnClickListener() {
@@ -323,7 +343,7 @@ public class PayFragment extends Fragment {
 
             mExecutedCheckbox.setChecked(true);
 
-            mPay.setExecuted(true); // Need to set "true" before call the "setExecDate"
+            mPay.setExecuted(1); // (true); // Need to set "true" before call the "setExecDate"
             mPay.setExecDate(local_date_time);
         }
     }
@@ -363,10 +383,13 @@ public class PayFragment extends Fragment {
                 return true;
 
             case R.id.menu_item_delete_pay:
-                PaymentLab paymentLab = PaymentLab.get(getActivity());
-                paymentLab.deleteItem(mPay.getId());
+                MainActivity ma = (MainActivity)(getActivity());
+                ma.setUUID(mPay.getId());
+                prepareToItemDelatePay();
+                // PaymentLab paymentLab = PaymentLab.get(getActivity());
+                // paymentLab.deleteItem(mPay.getId());
 
-                PRApplication.INSTANCE.getRouter().navigateTo(MainActivity.LIST_SCREEN, null);
+                //  PRApplication.INSTANCE.getRouter().navigateTo(MainActivity.LIST_SCREEN, null);
                 return true;
 
             case R.id.menu_item_edit_pay:
@@ -376,6 +399,14 @@ public class PayFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void prepareToItemDelatePay()
+    {
+        FragmentManager manager = getFragmentManager();
+        // Value n_mode == 2oo - delete record in payment table of DB
+        ClearDialogFragment dialog = ClearDialogFragment.newInstance(200);
+        dialog.show(manager, "Dialog1");
     }
 
     private void dispalyAddEditForm(Pay pay)

@@ -39,7 +39,14 @@ public class MainActivity extends AppCompatActivity
     public static final String CURRENCY_SCREEN = "currency screen";
     public static final String SETTINGS_SCREEN = "settings screen";
     private CurrencyExecutor mCE;
+    private UUID m_Uuid; // This UUID of selected - for delete Record
     private boolean mFlagShowCurrencyScreen = false;
+
+    public void setUUID(UUID Uuid)
+    {
+        m_Uuid = Uuid;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,9 +102,9 @@ public class MainActivity extends AppCompatActivity
         return null; // URL was malformed
     }
 
-    public void onDialogCanceled()
+    public void onDialogCanceled(int n_mode)
     {
-        int messageResId = R.string.cancel_erase;
+        int messageResId = (n_mode < 200) ? R.string.cancel_erase : R.string.cancel_delete;
         Toast toast = Toast.makeText(this, messageResId, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.TOP, 0, 200);
         toast.show();
@@ -110,8 +117,17 @@ public class MainActivity extends AppCompatActivity
         } else if (n_mode == 2) {
             clearAllLastDates();
             clearAllExecuteFlags();
+        } else if (n_mode == 200)
+        {
+            deleteSelectedRecordItem();
         }
-        int messageResId = (n_mode == 1) ? R.string.erase : R.string.erase_all;
+        int messageResId = 0;
+            if (n_mode == 200)
+                messageResId = R.string.delete_pay_record;
+            if (n_mode == 1)
+                messageResId = R.string.erase;
+            if (n_mode == 2)
+                messageResId = R.string.erase_all;
         Toast toast = Toast.makeText(this, messageResId, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.TOP, 0, 200);
         toast.show();
@@ -124,8 +140,10 @@ public class MainActivity extends AppCompatActivity
         ArrayList<Pay> payments = (ArrayList<Pay>)PaymentLab.get(this).getPayments();
         for(Pay pay : payments)
         {
-            pay.setExecuted(false);
-            lab.updatePay(pay);
+            if (pay.getExecuted() != 2) { // If pay record is not Locked
+                pay.setExecuted(0);
+                lab.updatePay(pay);
+            }
         }
     }
 
@@ -136,6 +154,19 @@ public class MainActivity extends AppCompatActivity
         for(Pay pay : payments)
         {
             pay.clearExecDate();
+            lab.updatePay(pay);
+        }
+    }
+
+    private void deleteSelectedRecordItem()
+    {
+        PaymentLab paymentLab = PaymentLab.get(this);
+        paymentLab.deleteItem(m_Uuid);
+
+        PaymentLab lab = PaymentLab.get(this);
+        ArrayList<Pay> payments = (ArrayList<Pay>)PaymentLab.get(this).getPayments();
+        for(Pay pay : payments)
+        {
             lab.updatePay(pay);
         }
     }

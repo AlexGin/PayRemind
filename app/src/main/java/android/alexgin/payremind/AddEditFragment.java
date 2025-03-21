@@ -62,11 +62,6 @@ public class AddEditFragment extends Fragment {
         super.onAttach(context);
     }
 
-    public void setPay(Pay pay)
-    {
-        this.mPay = pay;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

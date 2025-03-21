@@ -106,7 +106,7 @@ public class PRApplication extends Application {
                 }
             }
             int nDate = p.getDayOfMonth();
-            boolean bExec = p.isExecuted();
+            boolean bExec = (boolean)(1 == p.getExecuted() || 2 == p.getExecuted()); // Corrected 27.02.2025
             if ((dayCurr >= nDate) && !bExec)
             {
                 if (!b_notify_filter) {

@@ -29,7 +29,7 @@ public class PaymentCursorWrapper extends CursorWrapper {
         int nCateg = getInt(getColumnIndex(PaymentTable.Cols.CATEG));
         double dbTotal = getDouble(getColumnIndex(PaymentTable.Cols.TOTAL));
         int nCurrency = getInt(getColumnIndex(PaymentTable.Cols.CURRENCY));
-        int isExecuted = getInt(getColumnIndex(PaymentTable.Cols.EXECUTED));
+        int nExecuted = getInt(getColumnIndex(PaymentTable.Cols.EXECUTED));
         long execdate = getLong(getColumnIndex(PaymentTable.Cols.EXECDATE));
 
         LocalDate localD = Instant.ofEpochMilli(date)
@@ -49,7 +49,7 @@ public class PaymentCursorWrapper extends CursorWrapper {
         pay.setCategory((Category.values())[nCateg]);
         pay.setTotalSumm(dbTotal);
         pay.setCurrency(nCurrency);
-        pay.setExecuted(isExecuted != 0);
+        pay.setExecuted(nExecuted);
         pay.setExecDate(localDT);
 
         return pay;

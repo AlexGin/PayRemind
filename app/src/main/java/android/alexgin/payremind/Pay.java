@@ -26,7 +26,7 @@ Pay implements Parcelable {
     private Category mCategory;   // Category of this Payment
     private double mTotalSumm;    // Total Summ of Payment (0.0 - if unknown)
     private int mCurrency;        // 0->BYN; 1->USD
-    private boolean mExecuted;    // Current Pay (in current month) executed
+    private int mExecuted; // Current Pay: 0->Not-executed; 1->Executed; 2->Locked
 
     private LocalDateTime mExecDate;  // Last Payment date (01.01.1970 - if unknown)
 
@@ -83,24 +83,27 @@ Pay implements Parcelable {
         mDescription = data[2];
         mAccountId = data[3];
 
-        int[] ints = new int[4];
+        int[] ints = new int[5];
         in.readIntArray(ints);
         mDayOfMonth = ints[0];
         mPayPeriod = ints[1];
         int n_categ = ints[2];
         mCurrency = ints[3];
+        mExecuted = ints[4];
 
         mCategory = (Category.values())[0]; //[n_categ];
         mTotalSumm = in.readDouble();
-        mExecuted = in.readBoolean();
+        // mExecuted = in.readBoolean();
     }
 
-    public boolean isExecuted() {
+    // public boolean isExecuted() {
+    //    return mExecuted;
+    //}
+    public int getExecuted() {
         return mExecuted;
     }
-
-    public void setExecuted(boolean Executed) {
-        this.mExecuted = Executed;
+    public void setExecuted(int nExecuted) {
+        this.mExecuted = nExecuted;
     }
 
     public LocalDate getDate() {
@@ -201,9 +204,9 @@ Pay implements Parcelable {
         dest.writeStringArray(new String[]{mTitle, mNameOfBank, mDescription, mAccountId});
         dest.writeSerializable(mDate);
         int n_categ = mCategory.ordinal();
-        dest.writeIntArray(new int[]{mDayOfMonth, mPayPeriod, n_categ, mCurrency});
+        dest.writeIntArray(new int[]{mDayOfMonth, mPayPeriod, n_categ, mCurrency, mExecuted});
         dest.writeDouble(mTotalSumm);
-        dest.writeBoolean(mExecuted);
+        // dest.writeBoolean(mExecuted);
         dest.writeSerializable(mExecDate);
     }
 

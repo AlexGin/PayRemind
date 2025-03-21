@@ -29,7 +29,7 @@ public class ClearDialogFragment extends DialogFragment {
         /**
          * Triggered when the user presses the cancel button
          */
-        public void onDialogCanceled();
+        public void onDialogCanceled(int n_mode);
 
         /**
          * Triggered when the user presses the confirm button
@@ -48,14 +48,14 @@ public class ClearDialogFragment extends DialogFragment {
      * @param confirmResourceId int to use for the confirm button such as R.string.confirm
      * @return new ClearDialogFragment instance
      */
-    public static ClearDialogFragment newInstance(int contentResourceId, int confirmResourceId) {
+     /* public static ClearDialogFragment newInstance(int contentResourceId, int confirmResourceId) {
         ClearDialogFragment fragment = new ClearDialogFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_MODE_OF_CLEAR, contentResourceId);
 
         fragment.setArguments(args);
         return fragment;
-    }
+    } */
 
     public ClearDialogFragment() {
         // Required empty public constructor
@@ -88,12 +88,17 @@ public class ClearDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Log.d(TAG, "ClearDialogFragment: onCreateDialog-1");
-        boolean b_mode_all = (mModeOfErasing == 2);
-        String sMessage = b_mode_all ? getString(R.string.erase_all) :
-                getString(R.string.erase_only_flags);
+        String sMessage = "_";
+        if (mModeOfErasing == 200)
+            sMessage = getString(R.string.delete_record);
+        if (mModeOfErasing == 2)
+            sMessage = getString(R.string.erase_all);
+        if (mModeOfErasing == 1)
+            sMessage = getString(R.string.erase_only_flags);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(sMessage)
-            .setTitle(R.string.erase)
+            .setTitle((mModeOfErasing == 200) ? R.string.delete : R.string.erase)
             .setIcon(R.drawable.my_dog)
             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -106,7 +111,7 @@ public class ClearDialogFragment extends DialogFragment {
                 @Override
                 public void onClick(DialogInterface dialog, int id) {
                     // Send the negative button event back to the host activity
-                    mListener.onDialogCanceled();
+                    mListener.onDialogCanceled(mModeOfErasing);
                 }
             }
         );

@@ -2,6 +2,7 @@ package android.alexgin.payremind;
 
 import android.alexgin.payremind.database.PaymentBaseHelper;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -223,7 +224,7 @@ public class PayListFragment extends Fragment
             String sUnexec = "Отсутствуют Неоплаченные платежи";
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage(sUnexec);
-            builder.setIcon(R.drawable.my_dog); // It's my dog RIK :)
+            builder.setIcon(R.drawable.my_dog); // It's my dog KING :)
             builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int i) {
@@ -266,7 +267,7 @@ public class PayListFragment extends Fragment
         ArrayList<Pay> payments = (ArrayList<Pay>)PaymentLab.get(getActivity()).getPayments();
         for(Pay pay : payments)
         {
-            pay.setExecuted(false);
+            pay.setExecuted(0); // (false);
             lab.updatePay(pay);
         }
     }
@@ -345,13 +346,13 @@ public class PayListFragment extends Fragment
     }
 
     private void showAppInfo() {
-        String sVersion = String.format("Version: v 1.04.07.24");
+        String sVersion = String.format("Version: v 1.27.2.25");
         sVersion += (PaymentBaseHelper.USING_COPY_DB == 1) ?
-         String.format(" DB from assets") : String.format(" normal DB work");
+         String.format(" DB from assets") : String.format(" Normal DB work");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(sVersion);
-        builder.setIcon(R.drawable.my_dog); // It's my dog RIK :)
+        builder.setIcon(R.drawable.my_dog); // It's my dog KING :)
         builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
@@ -388,7 +389,8 @@ public class PayListFragment extends Fragment
                 bValidArray = IsValidArray(arr);
                 bPayInThisMonth = bValidArray && (arr[mntCurr] > 0);
             }
-            if ((!bValidArray) || (bPayInThisMonth)) {
+            boolean bNoLocked = (boolean)(2 != pay.getExecuted()); // No Locked record
+            if (((!bValidArray) || bPayInThisMonth) && bNoLocked) {
                 int n_curr = pay.getCurrency();
                 double dbSumm = (n_curr == 1) ?
                         pay.getTotalSumm() * currency_value :
@@ -450,8 +452,21 @@ public class PayListFragment extends Fragment
             }
             else
                 mDateLastTextView.setText("");
-
-            mExecutedImageView.setVisibility(pay.isExecuted() ? View.VISIBLE : View.GONE);
+            int nExecuted = pay.getExecuted();
+            if (nExecuted == 0) {
+                mExecutedImageView.setVisibility(View.INVISIBLE); // ? View.VISIBLE : View.GONE);
+            }
+            else if (nExecuted == 1) {
+                mExecutedImageView.setVisibility(View.VISIBLE);
+                mExecutedImageView.setScaleX(1.0f);
+                mExecutedImageView.setScaleY(1.0f);
+            }
+            else {
+                // Log.d(TAG, "PayHolder.bind LOCKED - Executed: " + nExecuted);
+                mExecutedImageView.setVisibility(View.VISIBLE);
+                mExecutedImageView.setScaleX(0.5f);
+                mExecutedImageView.setScaleY(0.5f);
+            }
             // Category of Pay:
             Category cat = pay.getCategory();
             int iCategIndex = cat.ordinal();
